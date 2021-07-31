@@ -1,0 +1,37 @@
+--- 
+    services: 
+      mongo: 
+        environment: 
+          MONGO_URL: "mongodb://localhost:27017/favourites"
+        image: mongo
+        ports: 
+          - "27017:27017"
+      mysql: 
+        environment: 
+          MYSQL_MYURL: "jdbc:mysql://localhost:3306/ustauthdbse?createDatabaseIfNotExist=true&user=root&password=pass"
+          MYSQL_ROOT_PASSWORD: pass
+        image: mysql
+        ports: 
+          - "3306:3306"
+      UserAuthenticationapp: 
+        depends_on: 
+          - mysql
+        image: manmadh123/authentication_repo
+        ports: 
+          - "9095:9095"
+        restart: always
+      favourites: 
+        depends_on: 
+          - mongo
+        image: manmadh123/favourites_repo
+        ports: 
+          - "9093:9093"
+        restart: always
+      Leagueservice: 
+        depends_on: 
+          - mongo
+        image: manmadh123/leagues_repo
+        ports: 
+          - "9093:9093"
+        restart: always  
+    

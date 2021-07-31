@@ -1,0 +1,39 @@
+<mat-toolbar class="toolbar">
+    <mat-toolbar-row class="toolbar-row1">
+        <div class="logo">
+            <span><span style="color: red;">LIVE</span> Scores App</span>
+        </div>
+        <div class="row1-list">
+            <a mat-button [routerLink]="'/live'">
+                Home
+            </a>
+            <a mat-button [routerLink]="'/login'" *ngIf="!(isLoggedIn$  | async)" class="login">
+                Login
+            </a>
+            <a mat-button  [routerLink]="'/'" *ngIf="isLoggedIn$  | async as isLoggedIn" (click)="logout()" class="logout">
+                Logout
+            </a>
+            <span *ngIf="isLoggedIn$  | async as isLoggedIn">Hi {{userName}}</span>
+        </div>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row class="toolbar-row2">
+       
+            
+            <a mat-button [routerLink]="'/live'" routerLinkActive="active">
+                Live Matches
+            </a>
+            <a mat-button [routerLink]="'/leagues'" routerLinkActive="active">
+                Leagues
+            </a>
+            <a mat-button [routerLink]="'/favouriteList'" routerLinkActive="active" class="favs">
+                Favourites
+            </a>
+            <a mat-button [routerLink]="'/upcoming'" routerLinkActive="active">
+                Schedules
+            </a>
+            <a mat-button [routerLink]="'/news'" routerLinkActive="active">
+                News
+            </a>
+    </mat-toolbar-row>
+</mat-toolbar>

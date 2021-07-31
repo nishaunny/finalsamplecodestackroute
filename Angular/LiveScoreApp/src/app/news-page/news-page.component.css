@@ -1,0 +1,139 @@
+.live-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 2em;
+}
+
+.top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2em;
+    min-height: 600px;
+}
+
+.side-nav {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 15px;
+    color: black;
+    width: 22%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: orange;
+    height: calc(100% - 70%);
+    position: fixed;
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.side-nav>a:hover {
+    background-color: rgb(233, 229, 214);
+    color: black;
+}
+
+.side-nav>h3 {
+    background-color: orange;
+    color: black;
+    text-align: center;
+    border-radius: 9px 0px 9px 0px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.side-nav>a {
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    min-height: 400px;
+    padding-top: 4em;
+    margin-left: 400px;
+    justify-content: flex-end;
+    min-width: 70%;
+}
+
+.example-card {
+    min-height: 150px;
+    width: 25%;
+    margin-top: 3em;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 9px;
+    border: none;
+    padding-bottom: 20px;
+    color: white;
+}
+
+.example-card:hover , mat-card-header:hover,.content:hover{
+  background-color: black;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}
+mat-card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+mat-card-header>img {
+    width: 92.5%;
+   margin-left: 10px;
+   margin-right: 40px;
+}
+
+.news-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    width: 90%;
+    padding-left: 3em;
+}
+.content{
+    padding: 10px;
+    font-size: 14px;
+}
+.paginator{
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    .top-row {
+        display: flex;
+        flex-direction: column;
+    }
+    .side-nav {
+        display: flex;
+        flex-direction: row;
+        height: 30px;
+        width: fit-content;
+        justify-content: center;
+        margin-top: 0;
+        z-index: 1;
+    }
+    .side-nav>a {
+        display: block;
+        font-size: 10px;
+        justify-content: center;
+    }
+    .img {
+        display: none;
+    }
+    .side-nav>h3 {
+        height: 30px;
+        font-size: 12px;
+    }
+    .container {
+        margin: 5px;
+    }
+}

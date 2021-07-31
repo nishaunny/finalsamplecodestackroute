@@ -1,0 +1,26 @@
+<div class="container-column">
+    <mat-card class="example-card">
+        <mat-card-header class="card-head">
+            <mat-card-title class="card-title">List of your Faourite Teams</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="content">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="favourites.length">
+                <ng-container matColumnDef="teamName">
+                    <th mat-header-cell *matHeaderCellDef> Team Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.teamName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions" class="actions">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let row; let i = index;">
+                        <button mat-icon-button color="warn" (click)="deleteFavourite(row,i)" class="del">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" class="paginator" *ngIf="favourites.length"></mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>

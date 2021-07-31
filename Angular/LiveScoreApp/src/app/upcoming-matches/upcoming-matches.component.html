@@ -1,0 +1,103 @@
+<div class="live-container">
+    <form class="top-row" [formGroup]="searchForm" (ngSubmit)="matchesByDate()">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <!-- (dateInput)="onDate($event.value)" -->
+            <input matInput  formControlName="date" [matDatepicker]="date" [min]="dateToday"
+                autocomplete="off" placeholder="YYYY/MM/DD">
+            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+            <mat-datepicker #date [startAt]="dateToday"></mat-datepicker>
+        </mat-form-field>
+        <span>
+            <mat-form-field class="select">
+                <mat-label>Category</mat-label>
+                <!-- (selectionChange)="onCategory($event.value)" -->
+                <mat-select  formControlName="sportCategory">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{category}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-fab color="primary" type="submit" [disabled]="searchForm.invalid" class="searchBtn">
+                <mat-icon>search</mat-icon>
+            </button>
+        </span>
+    </form>
+    <div class="main-row">
+        <div class="column">
+            <!-- Suggeste Matches -->
+            <mat-accordion class="example-headers-align">
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="panel-title">
+                            Suggested Matches
+                        </mat-panel-title>
+                        <mat-panel-description  class="panel-desc">
+                            Click to see suggested events
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div *ngIf="suggesteMatches.length">
+                        <mat-card class="example-card" *ngFor="let match of obs1 | async">
+                            <mat-card-header class="card-header">
+                                <mat-card-title>{{match.Cnm}}</mat-card-title>
+                                <mat-card-subtitle>{{match.Snm}}</mat-card-subtitle>
+                            </mat-card-header>
+
+                            <mat-card-content [style.overflow]="'auto'" [style.height.px]="'100'"
+                                *ngFor="let event of match.Events" class="content-row">
+                                <mat-card class="inner-card1" *ngIf="event.ECo"><span>{{event.ECo}}</span></mat-card>
+                                <mat-card class="inner-card2">
+                                    <p>{{event.Eps}}<span *ngIf="event.Eps!='event.EpsL'">{{event.EpsL}}</span></p>
+                                    <p *ngFor="let team of event.T1">
+                                        {{team.Nm}}
+                                    </p>
+                                    <p>{{event.Tr1}}{{event.Tr1C1}}<span *ngIf="event.Tr1CW1">/{{event.Tr1CW1}}</span>
+                                    </p>
+                                    <p> Vs </p>
+                                    <p>{{event.Tr2}}{{event.Tr2C1}}<span *ngIf="event.Tr2CW1">/{{event.Tr2CW1}}</span>
+                                    </p>
+                                    <p *ngFor="let team of event.T2">
+                                        {{team.Nm}}
+                                    </p>
+                                </mat-card>
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <!-- Upcoming Matches -->
+            <div *ngIf="upcomingMatches.length">
+                <h2 class="upcome-heading">Upcoming Matches for {{category}} 
+                    <img src="https://img.icons8.com/emoji/30/000000/backhand-index-pointing-down-emoji.png" />
+                </h2>
+                <mat-card class="example-card" *ngFor="let match of obs | async">
+                    <mat-card-header class="card-header">
+                        <mat-card-title class="card-title">{{match.Cnm}}</mat-card-title>
+                        <mat-card-subtitle>{{match.Snm}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content [style.overflow]="'auto'" [style.height.px]="'100'"
+                        *ngFor="let event of match.Events" class="content-row">
+                        <mat-card class="inner-card1" *ngIf="event.ECo"><span>{{event.ECo}}</span></mat-card>
+                        <mat-card class="inner-card2">
+                            <p>{{event.Eps}}<span *ngIf="event.Eps!='event.EpsL'">{{event.EpsL}}</span></p>
+                            <p *ngFor="let team of event.T1">
+                                {{team.Nm}}
+                            </p>
+                            <p>{{event.Tr1}}{{event.Tr1C1}}<span *ngIf="event.Tr1CW1">/{{event.Tr1CW1}}</span>
+                            </p>
+                            <p> Vs </p>
+                            <p>{{event.Tr2}}{{event.Tr2C1}}<span *ngIf="event.Tr2CW1">/{{event.Tr2CW1}}</span>
+                            </p>
+                            <p *ngFor="let team of event.T2">
+                                {{team.Nm}}
+                            </p>
+                        </mat-card>
+                    </mat-card-content>
+                </mat-card>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

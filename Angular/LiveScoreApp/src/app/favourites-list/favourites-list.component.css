@@ -1,0 +1,80 @@
+.container-column {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 500px;
+    justify-content: center;
+    padding-top: 3em;
+}
+
+.card-head {
+    color: white;
+    background-color: orange;
+    border-radius: 9px 9px 0px 0px;
+    padding-top: 10px;
+}
+
+table {
+    background-color: turquoise;
+    width: 100%;
+}
+
+th {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.example-card {
+    min-height: 350px;
+    min-width: 200px;
+    border-radius: 9px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.paginator {
+    background-color: transparent;
+    color: white;
+}
+
+::ng-deep .mat-paginator-page-size-select {
+    width: 27px!important;
+}
+
+::ng-deep .mat-select-value {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+::ng-deep .mat-select-arrow {
+    color: white;
+}
+
+::ng-deep .mat-option {
+    padding: 0!important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: transparent;
+}
+
+::ng-deep .mat-icon-buton {
+    background-color: yellow;
+}
+::ng-deep .green-snackbar{
+    background-color: rgb(15, 141, 15);
+  }
+@media screen and (max-width: 500px) {
+    .container-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .card-head {
+        height: 23px;
+    }
+    .card-title {
+        width: 200px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,19 @@
+<div class="container-column">
+    <div class="row"><h1>Add Your Favourite Team</h1></div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="teamName">
+            <th mat-header-cell *matHeaderCellDef> Team Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.teamName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions" class="actions">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button color="warn" (click)="addFavourite(row.teamName)" class="fav">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
